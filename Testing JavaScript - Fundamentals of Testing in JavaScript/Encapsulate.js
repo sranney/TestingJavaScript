@@ -18,6 +18,7 @@ test('sum adds numbers', sumTest);
 test('subtract subtracts numbers', subtractTest);
 
 function test(title,callback) {
+	console.log("here");
 	try {
 		callback();
 		console.log(`√ ${title}`)
@@ -26,10 +27,6 @@ function test(title,callback) {
 		console.error(error);
 	}
 };
-
-console.log(test);
-
-
 
 function expect(actual) {
 	return {
