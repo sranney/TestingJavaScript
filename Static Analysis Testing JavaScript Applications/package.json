@@ -9,7 +9,7 @@
     "prettier": "npx prettier \"**/*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|mdx|graphql|vue)\"",
     "format": "npm run prettier -- --write",
     "validate": "npm run lint && npm run prettier -- --list-different && npm run flow",
-    "precommit": "lint-staged && npm run validate"
+    "precommit": "lint-staged && npm run flow"
   },
   "author": "",
   "license": "ISC",

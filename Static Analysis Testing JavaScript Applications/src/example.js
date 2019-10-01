@@ -1,18 +1,7 @@
 const nameofperson = 'Spencer';
 typeof nameofperson === "string";
 
-if (
-    
-    
-    !(
-        
-        
-        
-        
-        
-        
-        
-        ServiceWorker in navigator)) {
+if (                       !                (ServiceWorker in navigator)) {
     console.log("uh oh");
 }
 

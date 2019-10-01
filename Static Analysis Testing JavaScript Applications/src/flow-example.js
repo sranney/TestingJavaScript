@@ -8,7 +8,7 @@ type User =
 
 {
     name: {
-        first: string,
+first: string,
         middle: string,
         last: string
     }
