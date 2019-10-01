@@ -11,6 +11,24 @@
     "validate": "npm run lint && npm run prettier -- --list-different && npm run flow",
     "precommit": "lint-staged && npm run validate"
   },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   "author": "",
   "license": "ISC",
   "dependencies": {
