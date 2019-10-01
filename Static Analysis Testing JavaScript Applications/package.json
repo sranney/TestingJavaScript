@@ -9,13 +9,14 @@
     "prettier": "npx prettier \"**/*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|mdx|graphql|vue)\"",
     "format": "npm run prettier -- --write",
     "validate": "npm run lint && npm run prettier -- --list-different && npm run flow",
-    "precommit": "npm run validate"
+    "precommit": "lint-staged && npm run validate"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "babel-eslint": "^10.0.3",
-    "eslint": "^6.5.0"
+    "eslint": "^6.5.0",
+    "lint-staged": "^9.4.0"
   },
   "devDependencies": {
     "eslint-config-prettier": "^6.3.0",
