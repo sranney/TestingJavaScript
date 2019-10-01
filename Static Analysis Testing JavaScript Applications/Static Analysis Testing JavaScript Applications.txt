@@ -1,0 +1,67 @@
+    "rules": {
+        "valid-typeof": "error"
+    }
+
+here we can use warn or error - in builds, error will break the build, warn will not
+additionally, you can also use "off" - this will ignore anything related to that check type
+
+    "extends": [
+        "eslint:recommended"
+    ],
+extends allows us to use plugins for eslint
+'eslint:recommended' gives us a set of eslint recommended checks - with it we get 
+\src\example.js
+   2:17  warning  Invalid typeof comparison value                        valid-typeof
+   4:5   error    Unexpected negating the left operand of 'in' operator  no-unsafe-negation
+   4:25  error    'navigator' is not defined                             no-undef
+   4:36  error    Empty block statement                                  no-empty
+   8:7   error    'greeting' is assigned a value but never used          no-unused-vars
+   9:1   error    'console' is not defined                               no-undef
+  11:24  error    'console' is not defined                               no-undef
+
+✖ 7 problems (6 errors, 1 warning)
+a whole suite of problems
+
+also downloaded extension eslint to allow for eslint to check for errors while writing the code
+
+disabling eslint rules that interfere with formatting preferences
+for instance "semi": ["error", "never"] - this will say never report missing semis as an error - this will allow prettier to format the code without semis and eslint won't throw an error
+if you plain don't want any warning at all, including no squigglies, you can use "off"
+
+downloaded prettier extension to format code
+enabled formatonsave (will use prettier) and auto save on vscode
+
+showed this utility ui
+https://prettier.io/playground - allows us to configure how prettier formats
+can configure single/double quotes, semicolons/no semicolons
+store all of these configurations in .prettierrc
+
+.prettierignore - add files you don't want to have prettier format, such as build files - prevents prettier from formatting any of these files
+
+
+eslint-config-prettier - package that will work with the .prettierrc to determine which errors are still relevant event after prettier has fixed formatting
+for instance, if your prettier config has no semicolons enabled, eslint-config-prettier will ignore any error regarding semicolons becuase prettier is configured to fix the issue
+
+if you need to overwrite anything that is in the eslint-config-prettier you can use the rules section
+
+--write flag will write directly to file the formatted code instead of printing it out to console to be copied
+--list-different will allow you to see what files have not been formatted by prettier, so you can run a script to then have the file formatted
+
+flow is part of node_modules by default
+allows you to do type checking on javascript
+you can download flow-bin to use it and then add script "flow" to package.json
+to use it, you need to run npm run flow which will create .flowconfig
+you can add plugins here, and tell it what files to look at here
+to use it, run npm run flow
+
+further configuration is needed to run eslint with flow
+we need to download babel-flow to transpile the code so that eslint will know what's up with the types
+that is a parser that can be used with eslint
+with that in place, eslint knows how to correctly parse through flow syntax
+
+** add @flow comment at top of a file that you want to have flow ran on, such as is done in flow-example.js
+
+git hooks allows you to run scripts prior to certain git actions taking place. for instance, you can run a script that validates work pre-commit
+husky is used to run those scripts and downloading husky actually builds the hooks
+husky will look for scripts with the names of the hooks to run
+so for instance if you want to run stuff precommit, place in the package.json a script with the name of precommit
