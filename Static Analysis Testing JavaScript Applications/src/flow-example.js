@@ -3,7 +3,10 @@ function add(a:number, b:number):number {
     return a + b;
 }
 
-type User = {
+type User = 
+
+
+{
     name: {
         first: string,
         middle: string,
