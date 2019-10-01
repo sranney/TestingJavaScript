@@ -2,15 +2,8 @@ const nameofperson = 'Spencer';
 typeof nameofperson === "string";
 
 const greeting = "hello";
-console
+console.log(`${greeting} world`);
 
-
-
-
-
-
-
-
-.log(`${greeting} world`);
-
-[(1, 2, 3)].forEach(x => console.log(x));
+[(1, 2, 3)]
+.forEach(x => console
+    .log(x));
