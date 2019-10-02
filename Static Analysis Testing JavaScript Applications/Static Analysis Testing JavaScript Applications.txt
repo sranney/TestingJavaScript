@@ -65,3 +65,8 @@ git hooks allows you to run scripts prior to certain git actions taking place. f
 husky is used to run those scripts and downloading husky actually builds the hooks
 husky will look for scripts with the names of the hooks to run
 so for instance if you want to run stuff precommit, place in the package.json a script with the name of precommit
+
+
+you can use flow to avoid common errors with flow type definitions
+
+run npm run flow init to setup flow and create .flowconfig file
