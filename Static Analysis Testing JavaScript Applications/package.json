@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "npx eslint src",
     "flow": "flow",
-    "prettier": "npx prettier \"**/*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|mdx|graphql|vue)\"",
+    "prettier": "npx prettier \"**/*.+(js|jsx|json)\"",
     "format": "npm run prettier -- --write",
     "validate": "npm run lint && npm run prettier -- --list-different && npm run flow",
     "precommit": "lint-staged && npm run flow"

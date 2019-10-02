@@ -1,0 +1,10 @@
+mocking javascript functions
+goal - make test deterministic, know the outcome of the function
+
+taking a function that would generate a new random result every run, and mocking it to return the same result every time makes the test deterministic, allowing us to know that every time we run our test, it is going to have the same result
+
+this acts as a control - allows us to test other functions, knowing that the behavior for a certain function is known through mocking it
+
+need to make sure that after mocking a test that we reset the function mocked to be the original function
+
+monkey-patching is the practice of setting a variable to store the original value of a function, then overwriting the original value of a function to mock that function by a simplified guaranteed result function - needed because it is used internally in a different function being tested - and then after the test has been run resetting the modified mock version of a function to be the original value of the function by using the temporarily stored value
