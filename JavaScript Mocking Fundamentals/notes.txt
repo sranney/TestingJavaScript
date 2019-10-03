@@ -28,3 +28,16 @@ important that this change occurs before the require statement is performed
 it is important to reset whatever you do with require.cache after its intended use - this impacts all other files that need what you are overwriting 
 
 this actually works exactly the same way as jest.mock works - when transpiled, jest.mock is moved above the written require statements
+
+
+if you want to mock a module in one file, you will probably want to mock the module in another file
+jest allows you to do this
+jest allows you to externalize your mock by using a mocks directory <<__mocks__>>
+then put in the modules by name
+so for here we want to mock module utils
+we would create the __mocks__ folder and put a utils file in there
+inside utils.js, we would put
+module.exports = {
+    getWinner: jest.fn((p1,p2)=>p1);
+}
+

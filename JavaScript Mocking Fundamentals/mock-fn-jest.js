@@ -1,11 +1,15 @@
 const thumbWar = require("./thumb-war");
 const utils = require("./utils");
 
-jest.mock("../utils",()=>{
-    return {
-        getWinner: jest.fn((p1,p2) => p1)
-    }
-})
+// jest.mock("../utils",()=>{
+//     return {
+//         getWinner: jest.fn((p1,p2) => p1)
+//     }
+// })
+
+//because of the externalized module mock found in __mocks__/utils, we no longer need the mocked function in the jest.mock function call
+//we can simply put
+jest.mock("../utils");
 
 test('returns winner',()=>{
     
