@@ -1,12 +1,19 @@
 const thumbWar = require("./thumb-war");
 const utils = require("./utils");
 
+jest.mock("../utils",()=>{
+    return {
+        getWinner: jest.fn((p1,p2) => p1)
+    }
+})
+
 test('returns winner',()=>{
-    const originalGetWinner = utils.getWinner;
-    utils.getWinner = jest.fn((p1,p2) => p1);
+    
+    //NOT NEEDED WHEN YOU RUN jest.mock
+    // jest.spyOn(utils,'getWinner'); //=> creates a mocked empty function
+    // utils.getWinner.mockImplementation((p1,p2) => p1);//replaces mocked utils with the function (p1,p2)=>p1 . . . this will be the new mocked function
 
     const winner = thumbWar("Kent C Dodds","Ken Wheeler");
-    console.log(utils.getWinner.mock);
     expect(winner).toBe("Kent C Dodds");
     expect(utils.getWinner.mock.calls).toEqual([
         ['Kent C Dodds','Ken Wheeler'],
@@ -27,5 +34,8 @@ test('returns winner',()=>{
     // )
 
     //cleanup task
-    utils.getWinner = originalGetWinner;
+    //NOT USED WHEN YOU USE jest.mock
+    // utils.getWinner.mockRestore();//restores function to original
+    //instead use .mockReset() - returns mocked function to its initial state - clears out the calls
+    utils.getWinner.mockReset();
 })

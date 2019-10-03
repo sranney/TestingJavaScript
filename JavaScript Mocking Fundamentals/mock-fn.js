@@ -1,7 +1,3 @@
-const asset = require("assert");
-const thumbWar = require("./thumb-war");
-const utils = require("./utils");
-
 //fn takes an implementation
 //returns a function that returns that implementation
 //this allows us to check for issues with the implementation of the getwinner function as shown on line 
@@ -11,19 +7,44 @@ function fn(impl) {
         mockFn.mock.calls.push(args);
         return impl(...args);
     }
-    mockFn.mock = {calls: []}
+    mockFn.mock = { calls: [] };
+    mockFn.mockImplementation = newImpl => (impl = newImpl);
     return mockFn;
 };
 
-const originalGetWinner = utils.getWinner;
-utils.getWinner = fn((p1,p2) => p1);
+const utilsPath = require.resolve('./utils');//this line and 17-24 hijack the getWinner function 
+
+//as seen by a console.log of require.cache - require.cache is an object that contains a Module
+require.cache[utilsPath] = {//needs to resemble module
+    id: utilsPath,
+    filename: utilsPath,
+    loaded: true,
+    exports: {
+        getWinner: fn((p1, p2) => p1)//here is where the crux of this exercise is - doing this is a lot like jest.mock
+        //takes control of the utils being exported (remember module.exports is what we use? this is that)
+        //when being imported in to this file, so the utils.getWinner we get is actually this one, not the one from the file
+    }
+}
+
+const assert = require("assert");
+const thumbWar = require("./thumb-war");
+const utils = require("./utils");
+
+//not needed with our new mock function
+// function spyOn(obj,prop) {
+//     const originalValue = obj[prop];
+//     obj[prop] = fn();
+//     obj[prop].mockRestore = ()=>(obj[prop] = originalValue);
+// }
+// spyOn(utils,'getWinner');
+// utils.getWinner.mockImplementation((p1,p2) => p1);
 
 const winner = thumbWar("Kent Dodds","Spencer Ranney");
-asset.strictEqual(winner,"Kent Dodds");
-console.log(utils.getWinner.mock.calls);
+assert.strictEqual(winner,"Kent Dodds");
 assert.deepStrictEqual(utils.getWinner.mock.calls, [
     ['Kent Dodds','Spencer Ranney'],
     ['Kent Dodds','Spencer Ranney']
 ]);
+
 //cleanup
-utils.getWinner = originalGetWinner;
+delete require.cache[utilsPath];
